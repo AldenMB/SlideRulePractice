@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Slide Rule Practice</title><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script type = "module" src="./main.js"></script>
+<link rel="stylesheet" href="SlideRulePractice.css"></link>
+</head>
+<body>
+
+<button type="button" id="generate">Generate</button>
+<p id="exercise_display">
+</p>
+
+<form>
+Guess:<input type="number" id="guess" maxlength="3" size="3" required="true">
+<input type="submit" value="check">
+</form>
+
+<p id="feedback"> </p>
+
+<form id="config">
+<fieldset>
+<legend>Configuration</legend>
+Closeness threshold:<input type="number" name="closeness" value="2" size="2" min="0">
+Exactness threshold:<input type="number" name="exactness" value="0" size="2" min="0">
+<fieldset id="formula_selections">
+<legend>Formulas</legend>
+</fieldset>
+</fieldset>
+</form>
+
+<p>
+Stay sharp! Practice computing with a slide rule. Check which formula types you would like to practice, and hit generate to get going. When you have your answer, type it in the answer field and hit enter to check it. Just give the three digits, since that's all a slide rule will give you anyhow!
+</p>
+
+<p>
+The following features are planned, but not for a first draft:
+
+<ul>
+<li> a virtual slide rule SVG which positions itself as a clue to how to compute the given formula.
+<li> a streak counter, to see how long you can keep getting it right.
+<li> optional exponent
+</ul>
+
+</p>
+
+<p>
+This web page was made by Alden Bradford circa July 14, 2021. May it help us all to become the rulers of our slide rules.
+</p>
+</body>
+
+</html>
