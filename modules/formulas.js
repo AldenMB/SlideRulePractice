@@ -56,7 +56,7 @@ const mul_div_div = make_formula({
 
 const circle_area_from_diameter = make_formula({
 	template: "\\( \\pi \\dfrac{ @1 ^2 }{ 4 } \\)",
-	func: (d => Math.pi * d**2 /4)
+	func: (d => Math.PI * d**2 /4)
 });
 
 const sqrt_of_product = make_formula({
