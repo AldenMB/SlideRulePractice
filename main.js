@@ -15,6 +15,7 @@ window.onload = function() {
 		const formula_box = document.createElement("input");
 		formula_box.setAttribute("type", "checkbox");
 		formula_box.setAttribute("name", name);
+		formula_box.setAttribute("id", name);
 		formula_box.checked = true;
 		div.appendChild(formula_box);
 		
