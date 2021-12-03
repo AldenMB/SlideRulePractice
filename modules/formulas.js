@@ -2,6 +2,10 @@ function randomTriplet(){
 	return Math.floor(100+900*Math.random());
 };
 
+function randomDegrees(){
+	return Math.floor(4+82*Math.random());
+};
+
 function getTriplets(n){
 	return Array(n).fill(null).map(() => randomTriplet());
 };
@@ -64,4 +68,17 @@ const sqrt_of_product = make_formula({
 	func: ((a, b) => Math.sqrt(a*b))
 });
 
-export default {multiplication, division, mul_mul_div, mul_div_div, circle_area_from_diameter, sqrt_of_product};
+const sine = function(){
+	const template = "\\( @1 \\sin( @2 ^\\circ ) \\)";
+	function generate(){
+		const multiple = randomTriplet();
+		const angle = randomDegrees();
+		const text = match_template(template, [multiple, angle]);
+		const answer = mantissa(multiple * Math.sin(angle * Math.PI / 180));
+		return {text, answer};
+	};
+	const text = match_template(template, [123, 45]);
+	return {text, generate};
+}();
+
+export default {multiplication, division, mul_mul_div, mul_div_div, circle_area_from_diameter, sqrt_of_product, sine};
