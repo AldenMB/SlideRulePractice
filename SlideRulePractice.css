@@ -1,9 +1,21 @@
 body {
-  font-size:45pt;
-}
-.MathJax{
-  font-size:65pt !important;
+	font-size:20pt;
 }
 .formula{
-	margin:75px;
+	margin:20px;
+}
+
+@media (max-width: 1000px) {
+	body {
+	  font-size:40pt;
+	}
+	checkbox {
+		transform: scale(3);
+	}
+	input, button {
+		font-size: inherit;
+	}
+	.formula{
+		margin:60px;
+	}
 }
