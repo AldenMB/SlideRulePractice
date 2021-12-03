@@ -1,22 +1,6 @@
 body {
-	font-size:20pt;
+	font-size:16pt;
 }
 .formula{
-	margin:20px;
-}
-
-@media (max-width: 1000px) {
-	body {
-	  font-size:40pt;
-	}
-	input, button {
-		font-size: inherit;
-	}
-	input[type="checkbox"] {
-		transform: scale(3);
-		margin: 30px;
-	}
-	.formula{
-		margin:30px;
-	}
+	margin:10px;
 }
