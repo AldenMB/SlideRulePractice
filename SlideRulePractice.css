@@ -9,13 +9,14 @@ body {
 	body {
 	  font-size:40pt;
 	}
-	checkbox {
-		transform: scale(3);
-	}
 	input, button {
 		font-size: inherit;
 	}
+	input[type="checkbox"] {
+		transform: scale(3);
+		margin: 30px;
+	}
 	.formula{
-		margin:60px;
+		margin:30px;
 	}
 }
