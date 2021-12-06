@@ -78,6 +78,7 @@ window.onload = function() {
 		exercise = formula.generate();
 		exercise_display.innerText = exercise.text;
 		feedback.innerText = "Type your guess above.";
+		guess.value = '';
 		MathJax.typeset();
 	};
 	
