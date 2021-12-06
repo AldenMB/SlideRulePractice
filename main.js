@@ -5,6 +5,7 @@ window.onload = function() {
 	const exercise_display = document.getElementById("exercise_display");
 	const guess = document.getElementById("guess");
 	const generate_button = document.getElementById("generate");
+	const give_up_button = document.getElementById("give up");
 	const feedback = document.getElementById("feedback");
 	const formula_selections = document.getElementById("formula_selections");
 	
@@ -38,6 +39,8 @@ window.onload = function() {
 	let exercise;
 	generate_button.addEventListener("click", generate);
 	generate();
+	
+	give_up_button.addEventListener("click", give_up);
 	
 	function get_config(){
 		const data = new FormData(config);
@@ -76,6 +79,10 @@ window.onload = function() {
 		exercise_display.innerText = exercise.text;
 		feedback.innerText = "Type your guess above.";
 		MathJax.typeset();
+	};
+	
+	function give_up(){
+		feedback.innerText = `The correct answer was ${exercise.answer}.`;
 	};
 };
 
