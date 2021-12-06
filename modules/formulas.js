@@ -1,9 +1,11 @@
+const DEG = Math.PI/180;
+
 function randomTriplet(){
-	return Math.floor(100+900*Math.random());
+	return Math.floor(10**(2+Math.random()));
 };
 
 function randomDegrees(){
-	return Math.floor(4+82*Math.random());
+	return Math.floor(Math.asin(Math.sin(4*DEG)+(Math.sin(86*DEG)-Math.sin(4*DEG))*Math.random())/DEG);
 };
 
 function getTriplets(n){
