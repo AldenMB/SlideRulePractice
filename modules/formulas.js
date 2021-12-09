@@ -105,16 +105,34 @@ circle_area_from_diameter.hint = function hint([d], slide_rule){
 	slide_rule.moveCursor({to: d/100, scale:'C'});
 };
 
-const sqrt_of_product = make_formula({
-	template: "\\( \\sqrt{ @1 \\times @2 } \\)",
-	func: ((a, b) => Math.sqrt(a*b))
-});
+const sqrt_of_product = function(){
+	const template = "\\( \\sqrt{ @1 \\times @2 } \\)";
+	function generate(){
+		let [a, b] = getTriplets(2);
+		b *= 10**(Math.random()>0.5);
+		const text = match_template(template, [a, b]);
+		const answer = mantissa(Math.sqrt(a*b));
+		return {text, answer, args:[a, b]};
+	};
+	const text = match_template(template, getDummy(2));
+	return {text, generate};
+}();
 sqrt_of_product.hint = function hint([a,b], slide_rule){
-	if(a>b){
-		[a, b] = [b, a];
+	a /= 100;
+	b /= 100;
+	let to_moving = 1;
+	if(a*b>100){
+		to_moving = 100;
+		if(a<b){
+			[a, b] = [b, a];
+		}
+	} else {
+		if(a>b){
+			[a, b] = [b, a];
+		}
 	}
-	slide_rule.moveSlide({to_fixed:a/100, scale_fixed:'A'});
-	slide_rule.moveCursor({to: b/100, scale:'B'});
+	slide_rule.moveSlide({to_moving, scale_moving:'B', to_fixed:a, scale_fixed:'A'});
+	slide_rule.moveCursor({scale:'B', to:b});;
 };
 
 const sine = function(){
