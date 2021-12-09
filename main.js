@@ -1,10 +1,13 @@
 import formulas from "./modules/formulas.js";
+import {make_rule} from "./modules/svg_slide_rule.js";
 
 window.onload = function() {
 	const config = document.getElementById("config");
 	const exercise_display = document.getElementById("exercise_display");
+	const svg_display = document.getElementById("hint_rule");
 	const guess = document.getElementById("guess");
 	const generate_button = document.getElementById("generate");
+	const hint_button = document.getElementById("hint");
 	const give_up_button = document.getElementById("give up");
 	const feedback = document.getElementById("feedback");
 	const formula_selections = document.getElementById("formula_selections");
@@ -37,10 +40,26 @@ window.onload = function() {
 	guess.form.addEventListener("submit", check_answer);
 	
 	let exercise;
+	let formula;
 	generate_button.addEventListener("click", generate);
 	generate();
 	
 	give_up_button.addEventListener("click", give_up);
+	hint_button.addEventListener("click", hint);
+	
+	const slide_rule = make_rule({length:Number(svg_display.getAttribute('width')-20), scales:'A B C CI D S L'.split(' ')});
+	svg_display.appendChild(slide_rule.svg);
+	
+	slide_rule.moveSlide({to_fixed:4, to_moving:3});
+	slide_rule.moveCursor({scale:'C', to:4});
+	
+	function hint(){
+		if('hint' in formula){
+			formula.hint(exercise.args, slide_rule);
+		} else {
+			feedback.innerText = "Sorry, this exercise has no hint";
+		}
+	};
 	
 	function get_config(){
 		const data = new FormData(config);
@@ -74,7 +93,7 @@ window.onload = function() {
 			exercise_display.innerText = "Please select at least one formula";
 			return;
 		}
-		let formula = randomChoice(formula_pool);
+		formula = randomChoice(formula_pool);
 		exercise = formula.generate();
 		exercise_display.innerText = exercise.text;
 		feedback.innerText = "Type your guess above.";
