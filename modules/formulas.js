@@ -124,10 +124,15 @@ const sine = function(){
 		const angle = randomDegrees();
 		const text = match_template(template, [multiple, angle]);
 		const answer = mantissa(multiple * Math.sin(angle * Math.PI / 180));
-		return {text, answer};
+		return {text, answer, args:[multiple, angle]};
 	};
 	const text = match_template(template, [123, 45]);
 	return {text, generate};
 }();
+sine.hint = function hint([a, b], slide_rule){
+	const to_moving = (a * Math.sin(b*Math.PI/180) > 100) ? 10 : 1;
+	slide_rule.moveSlide({to_moving, to_fixed:b, scale_fixed:'S'});
+	slide_rule.moveCursor({to:a/100, scale:'C'});
+};
 
 export default {multiplication, division, mul_mul_div, mul_div_div, circle_area_from_diameter, sqrt_of_product, sine};

@@ -134,6 +134,11 @@ function make_scale({name, height, length, min_separation}){
 		t.textContent = s;
 		scale.appendChild(t);
 	}
+	const nametag = make_node('text', {x: -10, y:0})
+	nametag.setAttributeNS(null, 'dominant-baseline', 'hanging');
+	nametag.setAttributeNS(null, 'font-size', 10);
+	nametag.textContent = name;
+	scale.appendChild(nametag);
 	return scale;
 };
 
