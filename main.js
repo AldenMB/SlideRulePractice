@@ -50,7 +50,7 @@ window.onload = function() {
 	const slide_rule = make_rule({length:Number(svg_display.getAttribute('width')-20), scales:'A B C CI D S L'.split(' ')});
 	svg_display.appendChild(slide_rule.svg);
 	
-	slide_rule.moveSlide({to_fixed:4, to_moving:3});
+	slide_rule.moveSlide({to_fixed:4, to_moving:Math.PI, scale_fixed:'A', scale_moving:'B'});
 	slide_rule.moveCursor({scale:'C', to:4});
 	
 	function hint(){
