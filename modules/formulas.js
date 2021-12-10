@@ -77,9 +77,23 @@ const mul_mul_div = make_formula({
 	func: ((a, b, c) => a*b/c)
 });
 mul_mul_div.hint = function hint([a,b,c], slide_rule){
-	//TODO: make this work in all cases
-	slide_rule.moveSlide({to_fixed:a/100, to_moving:c/100});
-	slide_rule.moveCursor({to:b/100, scale:'C'});
+	a /= 100;
+	b /= 100;
+	c /= 100;
+	const ans = a*b/c;
+	if(ans < 1){
+		//Shown is the second step. Is there a 1-step solution?
+		slide_rule.moveCursor({to:a*b});
+		slide_rule.moveSlide({to_fixed:a*b, to_moving:c});
+	} else if (ans > 10) {
+		//Shown is the second step. Is there a 1-step solution?
+		slide_rule.moveCursor({to:a*b/10});
+		slide_rule.moveSlide({to_fixed:a*b/10, to_moving:c});
+	} else {
+		// 1<ans<10
+		slide_rule.moveSlide({to_fixed:a, to_moving:c});
+		slide_rule.moveCursor({to:b, scale:'C'});
+	}
 };
 
 const mul_div_div = make_formula({
@@ -87,9 +101,25 @@ const mul_div_div = make_formula({
 	func: ((a, b, c) => a/(b*c))
 });
 mul_div_div.hint = function hint([a, b, c], slide_rule){
-	//TODO: make this work in all cases
-	slide_rule.moveSlide({to_fixed:a/100, to_moving:b/100});
-	slide_rule.moveCursor({to:c/100, scale:'CI'});
+	a /= 100;
+	b /= 100;
+	c /= 100;
+	const ans = a/(b*c);	
+	if(b<c){
+		[b, c] = [c, b];
+	}
+	if(ans > 1){
+		//Shown is the second step. Is there a 1-step solution?
+		slide_rule.moveCursor({to:a/b});
+		slide_rule.moveSlide({to_fixed:a/b, to_moving:c});
+	} else if (ans < 0.1) {
+		//Shown is the second step. Is there a 1-step solution?
+		slide_rule.moveCursor({to:a/b*10});
+		slide_rule.moveSlide({to_fixed:a/b*10, to_moving:c});
+	} else {
+		slide_rule.moveSlide({to_fixed:a, to_moving:b});
+		slide_rule.moveCursor({to:c, scale:'CI'});
+	}
 };
 
 const circle_area_from_diameter = make_formula({
